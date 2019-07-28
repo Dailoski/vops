@@ -5,6 +5,10 @@ import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Contact from './components/Contact';
+import Beer from './components/Beer';
+import Place from './components/Place';
+import Time from './components/Time';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,21 +30,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-  return ['Ko?', 'Sta?', 'Koliko?', 'Gde?', 'Kad?'];
+  return ['Ko?', 'Sta?', 'Gde?', 'Kad?'];  //Izbacio sam "Koliko"
 }
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return 'Step 1: DA LI NAM TREBA IME I PREZIME?';
+      return <Contact/>;
     case 1:
-      return 'Step 2: OVDE BIH NEKE KARTICE I DA SE KLIKCE NA NJIH?';
+      return <Beer/>;
     case 2:
-      return 'Step 3: ONDA DA IZABERE KOLIKO CE KOG PIVA (OD OVIH STO JE IZABRAO U PROSLOM KORAKU)?';
+      return  <Place/>;
     case 3:
-      return 'Step 4: ADRESA?';
-    case 4:
-      return 'Step 5: VREME DOSTAVE?';
+      return  <Time/>;
     default:
       return 'Unknown step';
   }
@@ -141,8 +143,9 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
   }
 
   return (
+    // dodao background color i border radius
     <div className={classes.root}>
-      <Stepper alternativeLabel nonLinear activeStep={activeStep}>
+      <Stepper alternativeLabel nonLinear activeStep={activeStep} style={{ backgroundColor: "rgba(255,255,255,0.3)", borderRadius: 10 }}> 
         {steps.map((label, index) => {
           const stepProps = {};
           const buttonProps = {};
@@ -168,14 +171,14 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
       <div>
         {allStepsCompleted() ? (
           <div>
-            <Typography className={classes.instructions}>
+            <Typography  className={classes.instructions}>
               All steps completed - you&apos;re finished
             </Typography>
             <Button onClick={handleReset}>Reset</Button>
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography component={'span'} className={classes.instructions}>{getStepContent(activeStep)}</Typography> {/*dodao component = span zbog CANNOT NEST <DIV> INSIDE <P> warning*/}
             <div>
               <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
