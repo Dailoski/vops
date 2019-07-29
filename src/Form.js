@@ -13,7 +13,7 @@ import Payment from './components/Payment';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '90%',
+    width: '90%'
   },
   button: {
     marginRight: theme.spacing(1),
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-  return ['Ko?', 'Sta?', 'Gde?', 'Kad?', 'Naplata'];  //Izbacio sam "Koliko"
+  return ['Ko?', 'Sta?', 'Gde?', 'Kad?', 'Naplata?'];  //Izbacio sam "Koliko"
 }
 
 function getStepContent(step) {
@@ -146,9 +146,9 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
   }
 
   return (
-    // dodao background color i border radius
+    // dodao background color i border radius , borderRadius: 10 }}
     <div className={classes.root}>
-      <Stepper alternativeLabel nonLinear activeStep={activeStep} style={{ backgroundColor: "rgba(255,255,255,0.3)", borderRadius: 10 }}> 
+      <Stepper alternativeLabel nonLinear activeStep={activeStep} style={{ backgroundColor: "rgba(255,255,255,0)"}}> 
         {steps.map((label, index) => {
           const stepProps = {};
           const buttonProps = {};
@@ -181,7 +181,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           </div>
         ) : (
           <div>
-            <Typography component={'span'} className={classes.instructions}>{getStepContent(activeStep)}</Typography> {/*dodao component = span zbog CANNOT NEST <DIV> INSIDE <P> warning*/}
+            <Typography component={'span'} className={classes.instructions}>{getStepContent(activeStep)} </Typography> {/*dodao component = span zbog CANNOT NEST <DIV> INSIDE <P> warning*/}
             <div>
               <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
