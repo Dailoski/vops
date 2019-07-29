@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Beer from './components/Beer';
 import Place from './components/Place';
 import Time from './components/Time';
+import Payment from './components/Payment';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-  return ['Ko?', 'Sta?', 'Gde?', 'Kad?'];  //Izbacio sam "Koliko"
+  return ['Ko?', 'Sta?', 'Gde?', 'Kad?', 'Naplata'];  //Izbacio sam "Koliko"
 }
 
 function getStepContent(step) {
@@ -43,6 +44,8 @@ function getStepContent(step) {
       return  <Place/>;
     case 3:
       return  <Time/>;
+    case 4:
+      return <Payment/>;
     default:
       return 'Unknown step';
   }
