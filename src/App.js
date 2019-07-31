@@ -7,9 +7,10 @@ function App() {
     <div className="App">
       <div className="logo-div">
         <img className="App-logo" src={require('./assets/logo_transparent_cropped.png')} alt="Moje Pivo"/>
+      </div>
+      <div className="stepper">
         <HorizontalNonLinearAlternativeLabelStepper />
       </div>
-      
     </div>
   );
 }
