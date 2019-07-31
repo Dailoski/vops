@@ -15,7 +15,7 @@ import Payment from './components/Payment';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '90%'
+    //width: '90%'
   },
   button: {
     marginRight: theme.spacing(1),
@@ -189,7 +189,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
   return (
     // dodao background color i border radius , borderRadius: 10 }}
     <div className={classes.root}>
-      <Stepper alternativeLabel nonLinear activeStep={activeStep} style={{ backgroundColor: "rgba(255,255,255,0)"}}> 
+      <Stepper alternativeLabel nonLinear activeStep={activeStep} style={{ backgroundColor: "rgba(255,255,255,0.8)", marginBottom:'10%',height:'20px'}}> 
         {steps.map((label, index) => {
           const stepProps = {};
           const buttonProps = {};
@@ -202,11 +202,12 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           return (
             <Step key={label} {...stepProps}>
               <StepButton
+                icon={ReturnIcon(index)}
                 onClick={handleStep(index)}
                 completed={isStepComplete(index)}
                 {...buttonProps}
               >
-                {label}
+                {/* {label} */}
               </StepButton>
             </Step>
           );
