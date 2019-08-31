@@ -7,12 +7,13 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import { connect } from 'react-redux'
 import Contact from './components/Contact';
 import Beer from './components/Beer';
 import Place from './components/Place';
 import Time from './components/Time';
 import {ShoppingCart} from './components/ShoppingCart';
+import { Badge } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -66,7 +67,7 @@ function getStepContent(step) {
   }
 }
 
-export default function HorizontalNonLinearAlternativeLabelStepper() {
+let StepperComponent = ({newItem, removeNotification}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState(new Set());
@@ -201,13 +202,20 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
       );
     }
     else if (props.index === 4) {
-      return (
+      return props.newItem ? 
+      <Badge badgeContent="dodato" color="primary">
+        <Tooltip  title="Pare nisu problem!">
+          <SvgIcon className={classes.icon} fontSize="large">
+            <path d="M20,18H4V6H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M11,17H13V16H14A1,1 0 0,0 15,15V12A1,1 0 0,0 14,11H11V10H15V8H13V7H11V8H10A1,1 0 0,0 9,9V12A1,1 0 0,0 10,13H13V14H9V16H11V17Z" />
+          </SvgIcon>
+        </Tooltip> 
+      </Badge> 
+      :
       <Tooltip title="Pare nisu problem!">
         <SvgIcon className={classes.icon} fontSize="large">
           <path d="M20,18H4V6H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M11,17H13V16H14A1,1 0 0,0 15,15V12A1,1 0 0,0 14,11H11V10H15V8H13V7H11V8H10A1,1 0 0,0 9,9V12A1,1 0 0,0 10,13H13V14H9V16H11V17Z" />
         </SvgIcon>
-      </Tooltip>
-      );
+      </Tooltip> 
     }
 }
 
@@ -227,7 +235,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           return (
             <Step key={label} {...stepProps}>
               <StepButton className={classes.step} style ={{backgroundColor: activeStep === index ? 'rgba(0,0,0,0.1)' : null}}
-                icon={<ReturnIcon index={index}/>}
+                icon={<ReturnIcon newItem={newItem} index={index}/>}
                 onClick={handleStep(index)}
                 completed={isStepComplete(index)}
                 {...buttonProps}
@@ -289,3 +297,10 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  newItem: state.shoppingCart.newItem
+})
+
+StepperComponent = connect(mapStateToProps)(StepperComponent)
+export {StepperComponent}

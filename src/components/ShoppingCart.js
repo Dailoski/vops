@@ -3,7 +3,7 @@ import './Payment.css';
 import { connect } from 'react-redux'
 import { Chip, Divider, Typography } from '@material-ui/core';
 import styled from 'styled-components'
-import { removeFromCart } from '../redux/actions';
+import { removeFromCart, removeNewItemNotification } from '../redux/actions';
 
 const ScrollableContainer = styled.div`
     height: 55vh;
@@ -11,7 +11,9 @@ const ScrollableContainer = styled.div`
     margin-bottom: 50px;
 `
 
-let ShoppingCart = ({selectedItems, remove}) => {
+let ShoppingCart = ({selectedItems, remove, removeNotification}) => {
+    removeNotification()  
+    
     let sum = 0
     const keys = Object.keys(selectedItems)
     const createLabel = item => `${item.name} ${item.volume} ${item.price}RSD x ${item.quantity} = ${item.price * item.quantity}RSD`
@@ -46,6 +48,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     remove: (id) => {
         dispatch(removeFromCart(id));
+    },
+    removeNotification: () => {
+        dispatch(removeNewItemNotification());
     }
 });
 

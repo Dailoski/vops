@@ -18,6 +18,7 @@ export const preloadedState = {
     },
     shoppingCart: {
         ordered: false,
+        newItem: false,
         selectedItems:{
             "1243":{
                 name: "Niksicko",

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import HorizontalNonLinearAlternativeLabelStepper from './Form';
+import {StepperComponent} from './StepperComponent';
 import { CssBaseline } from '@material-ui/core';
 import { Provider } from 'react-redux'
 import { preloadedState } from './redux/preloadedState';
@@ -18,7 +18,7 @@ function App() {
       </div>
       <div className="stepper">
 
-        <HorizontalNonLinearAlternativeLabelStepper />
+        <StepperComponent />
       </div>
     </div>
     </Provider >

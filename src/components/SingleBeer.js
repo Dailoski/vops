@@ -30,18 +30,18 @@ let SingleBeer = ({imgUrl, name, description, volume, add, id, price}) =>{
     }
     return(
     <Card className={classes.card}>
-    <CardActionArea>
+    <CardActionArea onClick={() => add(item, 1)}>
       <CardMedia
         className={classes.media}
         image={imgUrl}
         title={name}
       />
-      <CardContent onClick={() => add(item, 1)}>
+      <CardContent >
         <Typography gutterBottom variant="h5" component="h2">
           {name}
         </Typography>
         <Typography gutterBottom variant="h6" component="h3">
-          {volume}
+          {`${volume} ${price}RSD`}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           {description}
