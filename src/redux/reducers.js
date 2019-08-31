@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { ADD_TO_CART, REMOVE_FROM_CART } from './actions';
 
 const name = (state = '', action) => state
 const number = (state = '', action) => state
@@ -12,7 +13,23 @@ const asap = (state = false, action) => state
 const selectedTime = (state = '', action) => state
 
 const ordered = (state = false, action) => state
-const selectedItems = (state = [], action) => state
+const selectedItems = (state = {}, action) => {
+    const newState = JSON.parse(JSON.stringify(state))
+    switch (action.type) {
+        case ADD_TO_CART:
+            if(newState[action.id]){
+                newState[action.id].quantity += action.quantity
+            }
+            else newState[action.id] = action.item
+            return newState
+        case REMOVE_FROM_CART:
+            delete newState[action.id]
+            return newState
+        default:
+            return state;
+    
+    }
+}
 
 const info = combineReducers({
     name,

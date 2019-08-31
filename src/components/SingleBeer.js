@@ -6,7 +6,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography';
+import { addToCart } from '../redux/actions';
 
 const useStyles = makeStyles({
     card: {
@@ -18,9 +20,14 @@ const useStyles = makeStyles({
   });
   
 
-export const SingleBeer = ({imgUrl, name, description, volume}) =>{ 
+let SingleBeer = ({imgUrl, name, description, volume, add, id, price}) =>{ 
     const classes = useStyles();
-
+    const item = {
+      id,
+      volume,
+      name,
+      price
+    }
     return(
     <Card className={classes.card}>
     <CardActionArea>
@@ -29,7 +36,7 @@ export const SingleBeer = ({imgUrl, name, description, volume}) =>{
         image={imgUrl}
         title={name}
       />
-      <CardContent>
+      <CardContent onClick={() => add(item, 1)}>
         <Typography gutterBottom variant="h5" component="h2">
           {name}
         </Typography>
@@ -42,11 +49,13 @@ export const SingleBeer = ({imgUrl, name, description, volume}) =>{
       </CardContent>
     </CardActionArea>
     <CardActions>
-      <Button size="small" color="primary">
+      <Button onClick={() => add(item, 1)} size="small" color="primary">
         Add 1
-      </Button><Button size="small" color="primary">
+      </Button>
+      <Button onClick={() => add(item, 5)} size="small" color="primary">
         Add 5
-      </Button><Button size="small" color="primary">
+      </Button>
+      <Button onClick={() => add(item, 10)} size="small" color="primary">
         Add 10
       </Button>
       {/* <Button size="small" color="primary">
@@ -55,3 +64,17 @@ export const SingleBeer = ({imgUrl, name, description, volume}) =>{
     </CardActions>
   </Card>
 )}
+
+const mapStateToProps = state => ({
+})
+
+
+const mapDispatchToProps = dispatch => ({
+  add: (item, quantity) => {
+      dispatch(addToCart(item, quantity));
+  }
+});
+
+SingleBeer = connect(mapStateToProps, mapDispatchToProps)(SingleBeer)
+
+export {SingleBeer}
