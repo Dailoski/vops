@@ -12,7 +12,7 @@ import Contact from './components/Contact';
 import Beer from './components/Beer';
 import Place from './components/Place';
 import Time from './components/Time';
-import Payment from './components/Payment';
+import {ShoppingCart} from './components/ShoppingCart';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -60,7 +60,7 @@ function getStepContent(step) {
     case 3:
       return  <Time/>;
     case 4:
-      return <Payment/>;
+      return <ShoppingCart/>;
     default:
       return 'Unknown step';
   }
