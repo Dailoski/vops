@@ -5,6 +5,10 @@ import { CssBaseline } from '@material-ui/core';
 import { Provider } from 'react-redux'
 import { preloadedState } from './redux/preloadedState';
 import { configureStore } from './redux/configureStore';
+import { firebaseConfig } from './services.js/config';
+import firebase from 'firebase';
+
+firebase.initializeApp(firebaseConfig)
 
 
 function App() {

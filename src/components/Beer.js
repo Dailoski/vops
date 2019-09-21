@@ -1,8 +1,9 @@
 import React from 'react';
 import './Beer.css';
-import { beerList } from '../mocked/beerList';
+//import { beerList } from '../mocked/beerList';
 import { SingleBeer } from './SingleBeer';
 import styled from 'styled-components'
+import { fetchBeers } from '../services.js/fetchBeers';
 // 'Step 2: OVDE BIH NEKE KARTICE I DA SE KLIKCE NA NJIH? Yes, kartice sa slikom piva, ili samo imena. To treba videti, mozemo stavimo slike za pocetak, msm da je lepse.'
 
 export const ScrollableContainer = styled.div`
@@ -35,13 +36,23 @@ const BeerContainer = styled.div`
     @media (min-width: 1800px){} 
 `
 export default class Beer extends React.Component {
-    
+    state = {beerList: []}
+    async componentDidMount(){
+        const x = await fetchBeers()
+        setTimeout(() => {
+            this.setState({
+                beerList: x
+            })
+        }, 4000);
+        
+    }
     render(){
+        const {beerList} = this.state
         return (
             <ScrollableContainer>
                 <BeerContainer>
                     {beerList.map(
-                        beer => <SingleBeer key={beer.id} {...beer}/>
+                        beer => <SingleBeer key={beer.name} {...beer}/>
                     )}
                 </BeerContainer>            
             </ScrollableContainer>
