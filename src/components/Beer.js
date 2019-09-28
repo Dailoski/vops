@@ -38,12 +38,8 @@ const BeerContainer = styled.div`
 export default class Beer extends React.Component {
     state = {beerList: []}
     async componentDidMount(){
-        const x = await fetchBeers()
-        setTimeout(() => {
-            this.setState({
-                beerList: x
-            })
-        }, 4000);
+        const x = await fetchBeers();
+        this.setState({beerList:x});
         
     }
     render(){

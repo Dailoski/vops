@@ -12,10 +12,11 @@ const transformResponse = object => {
 
 export const fetchBeers = async() =>{
     let x  = []
-    await firebase.database().ref('/beers').once('value', (snapshot) => {
-        x =  snapshot.val().cans
-        x = transformResponse(x)
-        console.log(x)
+    await firebase.database().ref('/beers').once('value').then((snapshot) => {
+         x = snapshot.val().cans
+         x = transformResponse(x)
+
+        console.log(x);
     })
     return x
 }
