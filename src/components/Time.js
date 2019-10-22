@@ -1,10 +1,14 @@
 import React from 'react';
 import './Time.css';
+import { connect } from 'react-redux'
+import { changeTime } from '../redux/actions';
+import { DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns';
 
 // 'Step 5: VREME DOSTAVE? vreme dostave bira izmedju "ASAP" i nekog custom vremena, npr ako sad ja porucim a za veceras mi treba.';
-export default class Time extends React.Component {
+let Time = ({value, setTime}) =>{
     
-    render(){
+
         return (
             <div className="timeForm">
                 <label>
@@ -14,7 +18,17 @@ export default class Time extends React.Component {
                 
                 <label>
                     Neko određeno vreme?
-                    <input type="text" name="time" />
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    
+                    <DateTimePicker
+                        ampm={false}
+                        value={value}
+                        disablePast
+                        onChange={setTime}
+                        showTodayButton
+                    />
+                    </MuiPickersUtilsProvider>
+
                 </label>
                 <div>
                     Step 4: VREME DOSTAVE? vreme dostave bira izmedju "ASAP" i nekog custom vremena, npr ako sad ja porucim a za veceras mi treba.
@@ -22,5 +36,19 @@ export default class Time extends React.Component {
             </div>
             
         )
-    }
+    
 }
+const mapStateToProps = state => ({
+    value: state.time.selectedTime
+})
+
+
+const mapDispatchToProps = dispatch => ({
+  setTime: (date) => {
+      dispatch(changeTime(date));
+  }
+});
+
+Time = connect(mapStateToProps, mapDispatchToProps)(Time)
+
+export { Time }

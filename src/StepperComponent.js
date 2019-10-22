@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import Contact from './components/Contact';
 import Beer from './components/Beer';
 import Place from './components/Place';
-import Time from './components/Time';
+import {Time} from './components/Time';
 import {ShoppingCart} from './components/ShoppingCart';
 import { Badge } from '@material-ui/core';
 

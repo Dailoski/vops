@@ -14,7 +14,7 @@ export const preloadedState = {
     },
     time: {
         asap: false,
-        selectedTime: new Date().toISOString()
+        selectedTime: new Date(new Date().getTime() + 60 * 60 * 1000)
     },
     shoppingCart: {
         ordered: false,
