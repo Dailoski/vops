@@ -8,9 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import Tooltip from '@material-ui/core/Tooltip';
 import { connect } from 'react-redux'
-import Contact from './components/Contact';
+import {Contact} from './components/Contact';
 import Beer from './components/Beer';
-import Place from './components/Place';
+import {Place} from './components/Place';
 import {Time} from './components/Time';
 import {ShoppingCart} from './components/ShoppingCart';
 import { Badge } from '@material-ui/core';

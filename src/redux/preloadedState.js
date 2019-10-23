@@ -9,7 +9,7 @@ export const preloadedState = {
         items: []
     },
     location: {
-        savedLocation: "Mladenovac",
+        additionalInfo: "Mladenovac",
         enteredLocation: "Beograd"
     },
     time: {

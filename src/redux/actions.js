@@ -3,6 +3,7 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 export const REMOVE_NEW_ITEM_NOTIFICATION = "REMOVE_NEW_ITEM_NOTIFICATION"
 export const CHANGE_TIME = "CHANGE_TIME"
 export const CHANGE_ASAP_SWITCH = "CHANGE_ASAP_SWITCH"
+export const CHANGE_INPUT = "CHANGE_INPUT"
 
 export const removeNewItemNotification = () => ({
     type: REMOVE_NEW_ITEM_NOTIFICATION
@@ -34,4 +35,10 @@ export const changeTime = date => ({
 export const changeAsapSwitch = value => ({
     type: CHANGE_ASAP_SWITCH,
     value
+})
+
+export const changeInput = (value, name) => ({
+    type: CHANGE_INPUT,
+    value,
+    name
 })

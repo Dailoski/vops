@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import PropTypes from 'prop-types' ;
 import './TextInput.css';
 
-export default class TextInput extends Component {
+export class TextInput extends Component {
   
   //   static propTypes = {
   //     id: PropTypes.string.isRequired,
@@ -61,7 +61,7 @@ export default class TextInput extends Component {
           onBlur={() => !locked && this.setState({ active: false })}
           />
           <label htmlFor={id} className={error && 'error'}>
-          {error || label}
+          {(active || this.props.value) && label}
         </label>
         </div>
       );
