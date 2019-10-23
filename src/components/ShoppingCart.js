@@ -9,7 +9,16 @@ import { SingleCheckoutItem } from './SingleCheckoutItem';
 const ScrollableContainer = styled.div`
     height: 55vh;
     overflow: scroll;
+    margin: 0 auto;
+
     margin-bottom: 50px;
+    @media (min-width: 728px){
+        width: 80%;
+    }
+    @media (min-width: 1200px){
+        width: 50%;
+
+    }
 `
 
 let ShoppingCart = ({selectedItems, remove, removeNotification}) => {
@@ -17,7 +26,7 @@ let ShoppingCart = ({selectedItems, remove, removeNotification}) => {
     
     let sum = 0
     const keys = Object.keys(selectedItems)
-    const createLabel = item => `${item.name} ${item.volume} ${item.price}RSD x ${item.quantity} = ${item.price * item.quantity}RSD`
+    const createLabel = item => `${item.price}RSD x ${item.quantity} = ${item.price * item.quantity}RSD`
     return (
         <React.Fragment>
             <ScrollableContainer>
