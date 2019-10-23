@@ -4,7 +4,7 @@ const transformResponse = object => {
     const array = []
     const keys = Object.keys(object)
     keys.forEach(key => {
-        const beer = {name: key, imgUrl:object[key].downloadUrl}
+        const beer = {id: key, imgUrl:object[key].downloadUrl}
         array.push(Object.assign(beer, object[key]))
     })
     return array

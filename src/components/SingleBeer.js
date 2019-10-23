@@ -21,8 +21,7 @@ const useStyles = makeStyles({
   
 
 let SingleBeer = ({imgUrl, name, description, volume, add, id, price}) =>{ 
-    //temporary fix for no id's in response
-    id = id || Math.random()*1000
+    id = id
     const classes = useStyles();
     const item = {
       id,
