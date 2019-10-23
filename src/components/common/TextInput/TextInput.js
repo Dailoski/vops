@@ -55,7 +55,7 @@ export default class TextInput extends Component {
           id={id}
           type="text"
           value={this.props.value}
-          placeholder={!this.state.active && label}
+          placeholder={(!this.state.active && label) || ""}
           onChange= {this.props.onChange}
           onFocus={() => !locked && this.setState({ active: true,})}
           onBlur={() => !locked && this.setState({ active: false })}

@@ -1,9 +1,10 @@
 import React from 'react';
 import './Payment.css';
 import { connect } from 'react-redux'
-import { Chip, Divider, Typography } from '@material-ui/core';
+import { Divider, Typography } from '@material-ui/core';
 import styled from 'styled-components'
 import { removeFromCart, removeNewItemNotification } from '../redux/actions';
+import { SingleCheckoutItem } from './SingleCheckoutItem';
 
 const ScrollableContainer = styled.div`
     height: 55vh;
@@ -23,8 +24,10 @@ let ShoppingCart = ({selectedItems, remove, removeNotification}) => {
             {keys.map(
                 key =>  {
                     sum += selectedItems[key].price * selectedItems[key].quantity
-                    return(<Chip
+                    return(<SingleCheckoutItem
                         key={key}
+                        id={key}
+                        {...selectedItems[key]}
                         // avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
                         label={createLabel(selectedItems[key])}
                         onDelete={()=>{remove(key)}}

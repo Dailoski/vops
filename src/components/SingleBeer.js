@@ -21,12 +21,15 @@ const useStyles = makeStyles({
   
 
 let SingleBeer = ({imgUrl, name, description, volume, add, id, price}) =>{ 
+    //temporary fix for no id's in response
+    id = id || Math.random()*1000
     const classes = useStyles();
     const item = {
       id,
       volume,
       name,
-      price
+      price,
+      imgUrl
     }
     return(
     <Card className={classes.card}>

@@ -14,7 +14,8 @@ export const addToCart = (item, quantity) => ({
         name: item.name,
         volume: item.volume,
         quantity,
-        price: item.price
+        price: item.price,
+        imgUrl: item.imgUrl
     },
     quantity
 })

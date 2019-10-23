@@ -19,19 +19,7 @@ export const preloadedState = {
     shoppingCart: {
         ordered: false,
         newItem: false,
-        selectedItems:{
-            "1243":{
-                name: "Niksicko",
-                volume: "33cl",
-                price: 150,
-                quantity: 5
-            },
-            "12333":{
-            name: "Niksicko",
-            volume: "33cl",
-            price: 150,
-            quantity: 10
-        }
-        }
+        selectedItems:{}
+        
     }
 }
