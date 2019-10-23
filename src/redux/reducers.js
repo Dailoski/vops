@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_NEW_ITEM_NOTIFICATION, CHANGE_TIME } from './actions';
+import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_NEW_ITEM_NOTIFICATION, CHANGE_TIME, CHANGE_ASAP_SWITCH } from './actions';
 
 const name = (state = '', action) => state
 const number = (state = '', action) => state
@@ -9,7 +9,14 @@ const items = (state = [], action) => state
 const savedLocation = (state = '', action) => state
 const enteredLocation = (state = '', action) => state
 
-const asap = (state = false, action) => state
+const asap = (state = false, action) => {
+    switch (action.type) {
+        case CHANGE_ASAP_SWITCH:
+            return action.value
+        default:
+            return state;
+    }
+}
 const selectedTime = (state = '', action) => {
     switch (action.type) {
         case CHANGE_TIME:
