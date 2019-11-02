@@ -4,6 +4,8 @@ import './Beer.css';
 import { SingleBeer } from './SingleBeer';
 import styled from 'styled-components'
 import { fetchBeers } from '../services.js/fetchBeers';
+import { TextInput } from './common/TextInput/TextInput';
+import { Title } from './common/Title/Title';
 // 'Step 2: OVDE BIH NEKE KARTICE I DA SE KLIKCE NA NJIH? Yes, kartice sa slikom piva, ili samo imena. To treba videti, mozemo stavimo slike za pocetak, msm da je lepse.'
 
 export const ScrollableContainer = styled.div`
@@ -36,7 +38,9 @@ const BeerContainer = styled.div`
     @media (min-width: 1800px){} 
 `
 export default class Beer extends React.Component {
-    state = {beerList: []}
+    state = {beerList: [],
+             searchString: ''
+    }
     async componentDidMount(){
         const x = await fetchBeers();
         this.setState({beerList:x});
@@ -45,14 +49,24 @@ export default class Beer extends React.Component {
     render(){
         const {beerList} = this.state
         return (
-            <ScrollableContainer>
-                <BeerContainer>
-                    {beerList.map(
-                        beer => <SingleBeer key={beer.name} {...beer}/>
-                    )}
-                </BeerContainer>            
-            </ScrollableContainer>
-         
+            <div>
+            
+            <TextInput value={this.state.searchString} label="Pretraga" onChange={event => this.onChange(event.target.value)} />
+                <ScrollableContainer>
+                    <BeerContainer>
+                        {beerList
+                        .filter(
+                            e => e.name.toLowerCase().indexOf(this.state.searchString.toLowerCase()) > -1) 
+                        .map(
+                            beer => <SingleBeer key={beer.name} {...beer}/>
+                        )}
+                    </BeerContainer>            
+                </ScrollableContainer>
+            </div>
         )
     }
+
+    onChange(value){
+        this.setState({searchString:value});
+    } 
 }
