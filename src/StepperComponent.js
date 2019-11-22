@@ -17,7 +17,14 @@ import { Badge } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    //width: '90%'
+    height: "90vh",
+    width: "100%",
+    padding: "2vh"
+  },
+  component: {
+    height: "76vh",
+    display: "flex",
+    flexWrap: "wrap"
   },
   button: {
     marginRight: theme.spacing(1),
@@ -31,6 +38,7 @@ const useStyles = makeStyles(theme => ({
   instructions: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+    width: "100%"
   },
   icon: {
     '&:hover': {
@@ -41,8 +49,10 @@ const useStyles = makeStyles(theme => ({
     width: '95%',
     transition: 'all 0.5s ease-out'
   },
-  component: {
-    
+  controls: {
+    margin: "0 auto",
+    height: "fit-content",
+    alignSelf: "flex-end"
   }
 }));
 
@@ -222,7 +232,7 @@ let StepperComponent = ({newItem, removeNotification}) => {
   return (
     // dodao background color i border radius , borderRadius: 10 }} 
     <div className={classes.root}>
-      <Stepper alternativeLabel nonLinear activeStep={activeStep} style={{ backgroundColor: "rgba(255,255,255,0.8)", marginBottom:'10%',height:'50px'}}> 
+      <Stepper alternativeLabel nonLinear activeStep={activeStep} style={{ backgroundColor: "rgba(255,255,255,0.8)", marginBottom:'1vh', height:"9vh"}}> 
         {steps.map((label, index) => {
           const stepProps = {};
           const buttonProps = {};
@@ -240,34 +250,32 @@ let StepperComponent = ({newItem, removeNotification}) => {
                 completed={isStepComplete(index)}
                 {...buttonProps}
               >
-                {/* {label} */}
               </StepButton>
             </Step>
           );
         })}
       </Stepper>
       <div className={classes.component}>
-        {allStepsCompleted() ? (
-          <div>
-            <Typography  className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset}>Reset</Button>
-          </div>
-        ) : (
-          <div>
-            <Typography  component={'span'} className={classes.instructions}>{getStepContent(activeStep)} </Typography> {/*dodao component = span zbog CANNOT NEST <DIV> INSIDE <P> warning*/}
-            <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                Back
+
+            <Typography  component={'div'} className={classes.instructions}>{getStepContent(activeStep)} </Typography> {/*dodao component = span zbog CANNOT NEST <DIV> INSIDE <P> warning*/}
+            <div className={classes.controls}>
+              <Button 
+                disabled={activeStep === 0} 
+                onClick={handleBack} 
+                className={classes.button} 
+                color="primary" 
+                variant="contained"
+              >
+                Nazad
               </Button>
               <Button
                 variant="contained"
                 color="primary"
                 onClick={handleNext}
                 className={classes.button}
+                disabled={activeStep === 4}
               >
-                Next
+                Dalje
               </Button>
               {isStepOptional(activeStep) && !completed.has(activeStep) && (
                 <Button
@@ -286,15 +294,13 @@ let StepperComponent = ({newItem, removeNotification}) => {
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (
-                  <Button variant="contained" color="primary" onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Complete Step'}
+                  <Button variant="contained" color="secondary" onClick={handleComplete}>
+                    {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Naruci'}
                   </Button>
                 ))}
             </div>
           </div>
-        )}
       </div>
-    </div>
   );
 }
 

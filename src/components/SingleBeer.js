@@ -60,9 +60,7 @@ let SingleBeer = ({imgUrl, name, description, volume, add, id, price}) =>{
       <Button onClick={() => add(item, 10)} size="small" color="primary">
         Add 10
       </Button>
-      {/* <Button size="small" color="primary">
-        Learn More
-      </Button> */}
+      
     </CardActions>
   </Card>
 )}

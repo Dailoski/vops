@@ -7,25 +7,37 @@ import { preloadedState } from './redux/preloadedState';
 import { configureStore } from './redux/configureStore';
 import { firebaseConfig } from './services.js/config';
 import firebase from 'firebase';
+import styled from 'styled-components'
+
+const StyledApp = styled.div`
+ height: 100vh;
+`
+const LogoContainer = styled.div`
+  height: 10vh;
+`
+const ContentContainer = styled.div`
+  height: 90vh;
+  display: flex;
+  flex-wrap: wrap;
+`
 
 firebase.initializeApp(firebaseConfig)
 
 
 function App() {
   return (
-    <Provider store={configureStore(preloadedState)}>
 
-    <div className="App">
-      <CssBaseline />
-      <div className="logo-div">
-        <img className="App-logo" src={require('./assets/logo_transparent_cropped.png')} alt="Moje Pivo"/>
-      </div>
-      <div className="stepper">
-
-        <StepperComponent />
-      </div>
-    </div>
-    </Provider >
+    <StyledApp className="App">
+      <Provider store={configureStore(preloadedState)}>
+        <CssBaseline />
+        <LogoContainer className="logo-div">
+          <img className="App-logo" src={require('./assets/logo_transparent_cropped.png')} alt="Moje Pivo"/>
+        </LogoContainer>
+        <ContentContainer className="stepper">
+          <StepperComponent />
+        </ContentContainer>
+       </Provider >
+    </StyledApp>
   );
 }
 
