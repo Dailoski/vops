@@ -35,6 +35,14 @@ const BeerContainer = styled.div`
     }
     @media (min-width: 1800px){} 
 `
+
+const replaceSerbianLetters = string => {
+    let newString = string.replace(/[ć|č]/g,'c')
+    newString = newString.replace('š','s')
+    newString = newString.replace('ž','z')
+
+    return newString
+}
 export default class Beer extends React.Component {
     state = {beerList: [],
              searchString: ''
@@ -46,8 +54,10 @@ export default class Beer extends React.Component {
     }
     render(){
         const {beerList} = this.state
-        beerList.forEach(beer => {beerList.push(beer)})
-        beerList.forEach(beer => {beerList.push(beer)})
+        
+        //multiplying beer list
+        if(beerList.length < 16){beerList.forEach(beer => {beerList.push(beer)})
+        beerList.forEach(beer => {beerList.push(beer)})}
         return (
             <div>
             
@@ -56,7 +66,7 @@ export default class Beer extends React.Component {
                     <BeerContainer>
                         {beerList
                         .filter(
-                            e => e.name.toLowerCase().indexOf(this.state.searchString.toLowerCase()) > -1) 
+                            e => replaceSerbianLetters(e.name.toLowerCase()).indexOf(this.state.searchString.toLowerCase()) > -1) 
                         .map(
                             beer => <SingleBeer key={beer.name + Math.random()} {...beer}/>
                         )}

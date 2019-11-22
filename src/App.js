@@ -11,6 +11,8 @@ import styled from 'styled-components'
 
 const StyledApp = styled.div`
  height: 100vh;
+ background-image: url("http://millswine.com/wp-content/uploads/2013/12/beer-texture.jpg");
+ background-position-y: -600px;
 `
 const LogoContainer = styled.div`
   height: 10vh;
@@ -31,7 +33,7 @@ function App() {
       <Provider store={configureStore(preloadedState)}>
         <CssBaseline />
         <LogoContainer className="logo-div">
-          <img className="App-logo" src={require('./assets/logo_transparent_cropped.png')} alt="Moje Pivo"/>
+          <img className="app-logo" src={require('./assets/logo_transparent_cropped.png')} alt="Moje Pivo"/>
         </LogoContainer>
         <ContentContainer className="stepper">
           <StepperComponent />

@@ -21,7 +21,6 @@ const useStyles = makeStyles({
   
 
 let SingleBeer = ({imgUrl, name, description, volume, add, id, price}) =>{ 
-    id = id
     const classes = useStyles();
     const item = {
       id,

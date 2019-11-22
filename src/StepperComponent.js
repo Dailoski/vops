@@ -80,56 +80,10 @@ function getStepContent(step) {
 let StepperComponent = ({newItem, removeNotification}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState(new Set());
-  const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
 
-  function totalSteps() {
-    return getSteps().length;
-  }
-
-  function isStepOptional(step) {
-    return false;
-  }
-
-  function handleSkip() {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped(prevSkipped => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  }
-
-  function skippedSteps() {
-    return skipped.size;
-  }
-
-  function completedSteps() {
-    return completed.size;
-  }
-
-  function allStepsCompleted() {
-    return completedSteps() === totalSteps() - skippedSteps();
-  }
-
-  function isLastStep() {
-    return activeStep === totalSteps() - 1;
-  }
-
   function handleNext() {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? // It's the last step, but not all steps have been completed
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !completed.has(i))
-        : activeStep + 1;
+    const newActiveStep = activeStep + 1;
 
     setActiveStep(newActiveStep);
   }
@@ -141,37 +95,6 @@ let StepperComponent = ({newItem, removeNotification}) => {
   const handleStep = step => () => {
     setActiveStep(step);
   };
-
-  function handleComplete() {
-    const newCompleted = new Set(completed);
-    newCompleted.add(activeStep);
-    setCompleted(newCompleted);
-
-    /**
-     * Sigh... it would be much nicer to replace the following if conditional with
-     * `if (!this.allStepsComplete())` however state is not set when we do this,
-     * thus we have to resort to not being very DRY.
-     */
-    if (completed.size !== totalSteps() - skippedSteps()) {
-      handleNext();
-    }
-  }
-
-  function handleReset() {
-    setActiveStep(0);
-    setCompleted(new Set());
-    setSkipped(new Set());
-  }
-
-  function isStepSkipped(step) {
-    return skipped.has(step);
-  }
-
-  function isStepComplete(step) {
-    return completed.has(step);
-  }
-  
-
 
   function ReturnIcon(props) {
     
@@ -236,18 +159,12 @@ let StepperComponent = ({newItem, removeNotification}) => {
         {steps.map((label, index) => {
           const stepProps = {};
           const buttonProps = {};
-          if (isStepOptional(index)) {
-            buttonProps.optional = <Typography variant="caption">Optional</Typography>;
-          }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
+
           return (
             <Step key={label} {...stepProps}>
               <StepButton className={classes.step} style ={{backgroundColor: activeStep === index ? 'rgba(0,0,0,0.1)' : null}}
                 icon={<ReturnIcon newItem={newItem} index={index}/>}
                 onClick={handleStep(index)}
-                completed={isStepComplete(index)}
                 {...buttonProps}
               >
               </StepButton>
@@ -277,27 +194,10 @@ let StepperComponent = ({newItem, removeNotification}) => {
               >
                 Dalje
               </Button>
-              {isStepOptional(activeStep) && !completed.has(activeStep) && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSkip}
-                  className={classes.button}
-                >
-                  Skip
+                <Button variant="contained" color="secondary" >
+                  Naruci
                 </Button>
-              )}
-
-              {activeStep !== steps.length &&
-                (completed.has(activeStep) ? (
-                  <Typography variant="caption" className={classes.completed}>
-                    Step {activeStep + 1} already completed
-                  </Typography>
-                ) : (
-                  <Button variant="contained" color="secondary" onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1 ? 'Finish' : 'Naruci'}
-                  </Button>
-                ))}
+  
             </div>
           </div>
       </div>
