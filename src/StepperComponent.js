@@ -56,6 +56,43 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const writeData = (jsonObj, fb) => {
+  console.log(jsonObj)
+
+  fb.database().ref('data').push(jsonObj).then(
+    console.log('uspesno')
+  ).catch(err => {
+    console.log('puklo')
+  });
+}
+
+const adaptData = data => ({
+  firstName: data.info.name,
+  lastName: data.info.name,
+  phoneNumber: data.info.number,
+  order: {
+    ...data.shoppingCart.selectedItems
+  },
+  city:data.location.enteredLocation,
+  street:data.location.enteredLocation,
+  streetNumber:data.location.enteredLocation,
+  door:data.location.additionalInfo,
+  floor:data.location.additionalInfo,
+  apartment:data.location.additionalInfo,
+  dateOfDelivery:data.time.selectedTime.toISOString(),
+  timeOfDelivery:data.time.selectedTime.toISOString(),
+  timeStamp: new Date().getTime()
+})
+
+let OrderButton = ({state, fb}) => {
+  return(
+    <Button variant="contained" color="secondary" onClick={() => writeData(adaptData(state), fb)}>
+      Naruci
+    </Button>
+  )
+}
+OrderButton = connect(state => ({state}))(OrderButton)
+
 function getSteps() {
   return ['Ko?', 'Sta?', 'Gde?', 'Kad?', 'Naplata?'];  //Izbacio sam "Koliko"
 }
@@ -77,7 +114,7 @@ function getStepContent(step) {
   }
 }
 
-let StepperComponent = ({newItem, removeNotification}) => {
+let StepperComponent = ({newItem, removeNotification, fb}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -194,9 +231,7 @@ let StepperComponent = ({newItem, removeNotification}) => {
               >
                 Dalje
               </Button>
-                <Button variant="contained" color="secondary" >
-                  Naruci
-                </Button>
+                <OrderButton fb={fb} />
   
             </div>
           </div>

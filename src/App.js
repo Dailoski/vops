@@ -25,7 +25,6 @@ const ContentContainer = styled.div`
 
 firebase.initializeApp(firebaseConfig)
 
-
 function App() {
   return (
 
@@ -36,7 +35,7 @@ function App() {
           <img className="app-logo" src={require('./assets/logo_transparent_cropped.png')} alt="Moje Pivo"/>
         </LogoContainer>
         <ContentContainer className="stepper">
-          <StepperComponent />
+          <StepperComponent fb={firebase} />
         </ContentContainer>
        </Provider >
     </StyledApp>
