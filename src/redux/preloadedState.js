@@ -21,5 +21,9 @@ export const preloadedState = {
         newItem: false,
         selectedItems:{}
         
+    },
+    language: {
+        languages: ["en", "sr"],
+        selectedLang: "en"
     }
 }

@@ -14,6 +14,9 @@ import {Place} from './components/Place';
 import {Time} from './components/Time';
 import {ShoppingCart} from './components/ShoppingCart';
 import { Badge } from '@material-ui/core';
+import { injectIntl } from 'react-intl';
+import { messages } from './localization/locales';
+import { LangSwitcher } from './localization/LangSwitcher';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -84,10 +87,10 @@ const adaptData = data => ({
   timeStamp: new Date().getTime()
 })
 
-let OrderButton = ({state, fb}) => {
+let OrderButton = ({state, fb, intl}) => {
   return(
     <Button variant="contained" color="secondary" onClick={() => writeData(adaptData(state), fb)}>
-      Naruci
+      {intl.formatMessage(messages.order)}
     </Button>
   )
 }
@@ -114,11 +117,11 @@ function getStepContent(step) {
   }
 }
 
-let StepperComponent = ({newItem, removeNotification, fb}) => {
+let StepperComponent = ({newItem, removeNotification, fb, intl}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
-
+  
   function handleNext() {
     const newActiveStep = activeStep + 1;
 
@@ -220,7 +223,7 @@ let StepperComponent = ({newItem, removeNotification, fb}) => {
                 color="primary" 
                 variant="contained"
               >
-                Nazad
+                {intl.formatMessage(messages.back)}
               </Button>
               <Button
                 variant="contained"
@@ -229,10 +232,10 @@ let StepperComponent = ({newItem, removeNotification, fb}) => {
                 className={classes.button}
                 disabled={activeStep === 4}
               >
-                Dalje
+                {intl.formatMessage(messages.next)}
               </Button>
-                <OrderButton fb={fb} />
-  
+                <OrderButton intl={intl} fb={fb} />
+                <LangSwitcher />
             </div>
           </div>
       </div>
@@ -244,4 +247,5 @@ const mapStateToProps = state => ({
 })
 
 StepperComponent = connect(mapStateToProps)(StepperComponent)
+StepperComponent = injectIntl(StepperComponent)
 export {StepperComponent}

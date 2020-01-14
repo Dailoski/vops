@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_NEW_ITEM_NOTIFICATION, CHANGE_TIME, CHANGE_ASAP_SWITCH, CHANGE_INPUT } from './actions';
+import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_NEW_ITEM_NOTIFICATION, CHANGE_TIME, CHANGE_ASAP_SWITCH, CHANGE_INPUT, CHANGE_LANGUAGE } from './actions';
 
 const inputReducer = (state = '', action) => {
     switch (action.type) {
@@ -92,12 +92,26 @@ const shoppingCart = combineReducers({
     selectedItems,
     newItem
 });
+const languages = (state = false, action) => state
+const selectedLang = (state = false, action) => {
+    switch (action.type) {
+        case CHANGE_LANGUAGE:
+            return action.checked ? "en" : "sr"
+        default:
+            return state;
+    }
+}
 
+const language = combineReducers({
+    languages,
+    selectedLang
+});
 export const rootReducer = combineReducers({
     info,
     beerList,
     location,
     time,
-    shoppingCart
+    shoppingCart,
+    language
 })
 

@@ -4,6 +4,12 @@ export const REMOVE_NEW_ITEM_NOTIFICATION = "REMOVE_NEW_ITEM_NOTIFICATION"
 export const CHANGE_TIME = "CHANGE_TIME"
 export const CHANGE_ASAP_SWITCH = "CHANGE_ASAP_SWITCH"
 export const CHANGE_INPUT = "CHANGE_INPUT"
+export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE"
+
+export const changeLanguage = checked => ({
+    type: CHANGE_LANGUAGE,
+    checked
+})
 
 export const removeNewItemNotification = () => ({
     type: REMOVE_NEW_ITEM_NOTIFICATION
