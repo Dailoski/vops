@@ -13,7 +13,9 @@ const transformResponse = object => {
 export const fetchBeers = async() =>{
     let x  = []
     await firebase.database().ref('/beers').once('value').then((snapshot) => {
-         x = snapshot.val().cans
+         x = snapshot.val()
+         console.log(x);
+
          x = transformResponse(x)
 
         console.log(x);
