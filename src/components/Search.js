@@ -50,7 +50,7 @@ export const CustomizedInputBase = () => {
             />
             <Button color="primary" className={classes.button} aria-label="directions">
                 Poruči sada
-      </Button>
+            </Button>
         </Paper>
     );
 }

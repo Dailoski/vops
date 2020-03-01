@@ -1,13 +1,8 @@
 import React from 'react'
+import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'
-import Typography from '@material-ui/core/Typography';
 import { addToCart } from '../redux/actions';
 
 const useStyles = makeStyles({
@@ -19,9 +14,52 @@ const useStyles = makeStyles({
     },
   });
   
+const StyledButton = styled(Button)`
+  &&{
+    border-radius: 0;
+    background-color: #01012b;
+    color: white;
+    :hover{
+      background-color: #01012b;
+    }
+    }
+`
+
+const StyledSingleBeer = styled.div`
+  width: 300px;
+  padding: 0 25px 70px 25px;
+  img{
+    width: 250px;
+    height: 300px;
+    border: solid 1px #c4c4c4;
+  }
+  p{
+    width: 90%;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #4e4e59;
+  }
+  h3{
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #01012b;
+
+  }
+`
 
 let SingleBeer = ({imgUrl, name, description, volume, add, id, price}) =>{ 
     const classes = useStyles();
+    console.log(classes)
     const item = {
       id,
       volume,
@@ -30,38 +68,14 @@ let SingleBeer = ({imgUrl, name, description, volume, add, id, price}) =>{
       imgUrl
     }
     return(
-    <Card className={classes.card}>
-    <CardActionArea onClick={() => add(item, 1)}>
-      <CardMedia
-        className={classes.media}
-        image={imgUrl}
-        title={name}
-      />
-      <CardContent >
-        <Typography gutterBottom variant="h5" component="h2">
-          {name}
-        </Typography>
-        <Typography gutterBottom variant="h6" component="h3">
-          {`${volume} ${price}RSD`}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {description}
-        </Typography>
-      </CardContent>
-    </CardActionArea>
-    <CardActions>
-      <Button onClick={() => add(item, 1)} size="small" color="primary">
-        Add 1
-      </Button>
-      <Button onClick={() => add(item, 5)} size="small" color="primary">
-        Add 5
-      </Button>
-      <Button onClick={() => add(item, 10)} size="small" color="primary">
-        Add 10
-      </Button>
-      
-    </CardActions>
-  </Card>
+      <StyledSingleBeer>
+        <img src={imgUrl} alt="beer" />
+        <p> {name + " " + volume + "l"} </p>
+        <h3> {price + " RSD"} </h3>
+        <StyledButton onClick={() => add(item, 1)}>
+          Dodaj u gajbu
+        </StyledButton>
+      </StyledSingleBeer>
 )}
 
 const mapStateToProps = state => ({

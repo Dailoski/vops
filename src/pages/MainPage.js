@@ -8,6 +8,7 @@ import { Brands } from "../components/Brands"
 import { WantBeer } from "../components/WantBeer"
 import { Footer } from "../components/Footer"
 
+
 const StyledMainPage = styled.div`
     img{
         width: 100%;

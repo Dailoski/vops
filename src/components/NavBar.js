@@ -1,7 +1,7 @@
 import React from "react"
 import styled from 'styled-components'
 import { Logo, Gajba } from "./Logo"
-
+import { Link } from "react-router-dom";
 const StyledNavBar = styled.div`
     display: flex;
     justify-content: space-between;
@@ -32,14 +32,25 @@ const StyledDiv = styled.div`
             cursor: pointer;
         }
     }
+    a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     color:inherit; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
 `
 export const NavBar = () => {
 
-    return(
+    return (
         <StyledNavBar>
-            <Logo/>
+            <Logo />
             <StyledDiv>
-                <p> POGLEDAJ PIVA</p>
+                <Link to="/choose-beer"><p> POGLEDAJ PIVA</p></Link>
                 <Gajba />
             </StyledDiv>
         </StyledNavBar>

@@ -3,7 +3,7 @@ import './Beer.css';
 //import { beerList } from '../mocked/beerList';
 import { SingleBeer } from './SingleBeer';
 import styled from 'styled-components'
-import { fetchBeers } from '../services.js/fetchBeers';
+import { fetchBeers } from '../services/fetchBeers';
 import { TextInput } from './common/TextInput/TextInput';
 import { injectIntl } from 'react-intl';
 import { messages } from '../localization/locales';

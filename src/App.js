@@ -6,13 +6,16 @@ import { Provider } from 'react-redux'
 
 import { preloadedState } from './redux/preloadedState';
 import { configureStore } from './redux/configureStore';
-import { firebaseConfig } from './services.js/config';
+import { firebaseConfig } from './services/config';
 import firebase from 'firebase';
 import styled from 'styled-components'
 import { messages } from './localization/locales';
 import { LanguageProvider } from './localization/LanguageProvider';
 import { MainPage } from './pages/MainPage';
-
+import { BeerList } from './pages/BeerList';
+import {
+  BrowserRouter as Router,
+  Route } from "react-router-dom";
 const StyledApp = styled.div`
  height: 100vh;
  
@@ -36,15 +39,18 @@ function App() {
       <Provider store={configureStore(preloadedState)}>
         <LanguageProvider >
           <CssBaseline />
-          <MainPage></MainPage>
-          {/* <LogoContainer className="logo-div">
-            <img className="app-logo" src={require('./assets/logo_transparent_cropped.png')} alt="Moje Pivo"/>
-          </LogoContainer>
-          <ContentContainer className="stepper">
-            <StepperComponent fb={firebase} />
-          </ContentContainer> */}
+          <Router>
+           
+            <Route path="/choose-beer">
+              <BeerList />
+            </Route>
+            <Route path="/home">
+              <MainPage />
+            </Route>
+
+          </Router>
         </LanguageProvider>
-       </Provider >
+      </Provider >
     </StyledApp>
   );
 }

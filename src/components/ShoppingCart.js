@@ -1,26 +1,35 @@
 import React from 'react';
 import './Payment.css';
 import { connect } from 'react-redux'
-import { Divider, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import styled from 'styled-components'
 import { removeFromCart, removeNewItemNotification } from '../redux/actions';
 import { SingleCheckoutItem } from './SingleCheckoutItem';
+import Button from '@material-ui/core/Button';
 
 const ScrollableContainer = styled.div`
-    height: 55vh;
     overflow: scroll;
     margin: 0 auto;
-
+    border: solid 1px #c4c4c4;
     margin-bottom: 50px;
-    @media (min-width: 728px){
-        width: 80%;
-    }
-    @media (min-width: 1200px){
-        width: 50%;
-
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around
+    h2{
+        width: 100%;
     }
 `
-
+const StyledButton = styled(Button)`
+  &&{
+    border-radius: 0;
+    background-color: #ffbc21;
+    color: white;
+    :hover{
+      background-color: #ffbc21;
+    }
+    }
+`
 let ShoppingCart = ({selectedItems, remove, removeNotification}) => {
     removeNotification()  
     
@@ -30,6 +39,8 @@ let ShoppingCart = ({selectedItems, remove, removeNotification}) => {
     return (
         <React.Fragment>
             <ScrollableContainer>
+            <h2>{keys.length ? "Tvoja gajba" : "Muči te žeđ?"}</h2>
+            {keys.length ? <React.Fragment><span>Kruševačka 20, Beograd</span><span>promeni</span></React.Fragment> : <p>Napuni svoju gajbu odmah!</p>}
             {keys.map(
                 key =>  {
                     sum += selectedItems[key].price * selectedItems[key].quantity
@@ -42,8 +53,10 @@ let ShoppingCart = ({selectedItems, remove, removeNotification}) => {
                         onDelete={()=>{remove(key)}}
                 />)}
             )}
+            <StyledButton>
+                Nastavite
+            </StyledButton>
         </ScrollableContainer>
-        <Divider />
         <Typography color="primary" variant="h1" component="h2" gutterBottom>
             {`Ukupno: ${sum}RSD`}
         </Typography>
