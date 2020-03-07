@@ -8,6 +8,9 @@ import { SingleCheckoutItem } from './SingleCheckoutItem';
 import Button from '@material-ui/core/Button';
 
 const ScrollableContainer = styled.div`
+    position: absolute;
+    top: 300px;
+    right: 100px;
     overflow: scroll;
     margin: 0 auto;
     border: solid 1px #c4c4c4;

@@ -8,6 +8,14 @@ div, p, span, button, input{
   font-family: Poppins, sans-serif;
 
 }
+body{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 .app-logo {
   /* animation: App-logo-spin infinite 20s linear; */
