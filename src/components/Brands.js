@@ -27,16 +27,16 @@ const StyledDiv = styled.div`
         div{
             width: 16.66%;
             img{
-                width: 70%;
+                width: 50%;
             }
         }
     }
     .brands-pagination{
       
         .dot {
-            height: 10px;
-            width: 10px;            
-            background-color: #bbb;
+            height: 12px;
+            width: 12px;            
+            background-color: rgba(255,255,255,0.5);
             border-radius: 50%;
             display: inline-block;
             margin: auto;
@@ -44,7 +44,7 @@ const StyledDiv = styled.div`
             
         }
         .dot.active {
-            background-color: rgb(53, 153, 240);
+            background-color: #fff;
         }
 
         .dot:hover {
