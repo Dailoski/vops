@@ -9,7 +9,7 @@ import { configureStore } from './redux/configureStore';
 import { firebaseConfig } from './services/config';
 import firebase from 'firebase';
 import styled from 'styled-components'
-import { messages } from './localization/locales';
+//import { messages } from './localization/locales';
 import { LanguageProvider } from './localization/LanguageProvider';
 import { MainPage } from './pages/MainPage';
 import { BeerList } from './pages/BeerList';
@@ -32,7 +32,7 @@ const StyledApp = styled.div`
 firebase.initializeApp(firebaseConfig)
 
 function App() {
-  console.log(messages)
+ // console.log(messages)
   return (
 
     <StyledApp className="App">
@@ -40,13 +40,15 @@ function App() {
         <LanguageProvider >
           <CssBaseline />
           <Router>
-           
+          
+            <Route exact path="/">
+                <MainPage />
+            </Route>
             <Route path="/choose-beer">
               <BeerList />
             </Route>
-            <Route path="/home">
-              <MainPage />
-            </Route>
+    
+
 
           </Router>
         </LanguageProvider>

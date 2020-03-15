@@ -30,7 +30,7 @@ const StyledSingleBeer = styled.div`
   padding: 0 25px 70px 25px;
   img{
     width: 250px;
-    height: 300px;
+    height: 270px;
     border: solid 1px #c4c4c4;
   }
   p{

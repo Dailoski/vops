@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 
 const mapStateToProps = (state) => {
-    console.log(state.language.selectedLang)
+   // console.log(state.language.selectedLang)
     return {
         locale: state.language.selectedLang,
         key: state.language.selectedLang,
