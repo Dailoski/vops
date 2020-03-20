@@ -1,6 +1,6 @@
 import React from "react"
 import styled from 'styled-components'
-import footer from '../images/footer.png'
+import footer from '../images/footer-bg-sa-belom-pozadinom.png'
 import beer from '../images/beer.png'
 import { Logo } from "./Logo"
 import { Link } from "react-router-dom";
