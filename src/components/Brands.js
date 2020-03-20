@@ -28,9 +28,17 @@ const StyledDiv = styled.div`
             width: 16.66%;
             img{
                 width: 50%;
+                opacity: 1;
+                animation: fade 1s linear;
             }
-        }
-    }
+          
+            @keyframes fade {
+                0% { opacity: 0 }
+                100% { opacity: 1 }
+                }
+        }   
+}
+    
     .brands-pagination{
       
         .dot {

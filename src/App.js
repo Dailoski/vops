@@ -13,6 +13,7 @@ import styled from 'styled-components'
 import { LanguageProvider } from './localization/LanguageProvider';
 import { MainPage } from './pages/MainPage';
 import { BeerList } from './pages/BeerList';
+import { OrderPage } from './pages/OrderPage';
 import {
   BrowserRouter as Router,
   Route } from "react-router-dom";
@@ -46,6 +47,9 @@ function App() {
             </Route>
             <Route path="/choose-beer">
               <BeerList />
+            </Route>
+            <Route path="/order">
+              <OrderPage/>
             </Route>
     
 
