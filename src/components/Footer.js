@@ -63,7 +63,7 @@ const StyledDiv = styled.div`
         margin-block-end: 1vh;  
         :hover {
             cursor: pointer;
-        }
+            text-decoration: underline;        }
     }
     a {
     color: inherit;
@@ -72,6 +72,7 @@ const StyledDiv = styled.div`
    td {
        width: 13vw;
        height: 3vh;
+       text-align: left;
    }
   
 
@@ -99,7 +100,7 @@ export const Footer = () => {
                                     <Link to="/"><p> Home</p></Link>
                                 </td>
                                 <td align="left">
-                                    <Link to="/how-it-works"><p> O nama</p></Link>
+                                    <Link to="/about-us"><p> O nama</p></Link>
                                 </td>
                                 <td align="left">
                                     <Link to="/brands"><p> Pravila o zaštiti ličnih podataka</p></Link>

@@ -11,12 +11,16 @@ import firebase from 'firebase';
 import styled from 'styled-components'
 //import { messages } from './localization/locales';
 import { LanguageProvider } from './localization/LanguageProvider';
+import  ScrollToTop from './ScrollToTop';
 import { MainPage } from './pages/MainPage';
 import { BeerList } from './pages/BeerList';
 import { OrderPage } from './pages/OrderPage';
+import { AboutUsPage } from './pages/AboutUs';
+
 import {
   BrowserRouter as Router,
   Route } from "react-router-dom";
+
 const StyledApp = styled.div`
  height: 100vh;
  
@@ -40,21 +44,25 @@ function App() {
       <Provider store={configureStore(preloadedState)}>
         <LanguageProvider >
           <CssBaseline />
-          <Router>
-          
-            <Route exact path="/">
-                <MainPage />
-            </Route>
-            <Route path="/choose-beer">
-              <BeerList />
-            </Route>
-            <Route path="/order">
-              <OrderPage/>
-            </Route>
-    
+        
+            <Router>
+            
+              <Route exact path="/">
+                  <MainPage />
+              </Route>
+              <Route path="/choose-beer">
+                <BeerList />
+              </Route>
+              <Route path="/order">
+                <OrderPage/>
+              </Route>
+              <Route path="/about-us">
+                <AboutUsPage/>
+              </Route>
+      
 
-
-          </Router>
+              <ScrollToTop/>
+            </Router>
         </LanguageProvider>
       </Provider >
     </StyledApp>
