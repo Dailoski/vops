@@ -5,6 +5,7 @@ import { Footer } from "../components/Footer"
 import { fetchBeers } from "../services/fetchBeers"
 import { SingleBeer } from "../components/SingleBeer"
 import { ShoppingCart } from "../components/ShoppingCart"
+import { TextInput } from "../components/common/TextInput/TextInput"
 
 const StyledBeerList = styled.div`
     .content{
@@ -42,7 +43,10 @@ export const BeerList = () => {
             <NavBar />
 
             <div className="content">
-                <h1>Izaberi pivo</h1>
+                <div>
+                    <h1>Izaberi pivo</h1>
+                   
+                </div>
                 <div className="beer-list">
                     {items.map(beer => <SingleBeer key={beer.id} {...beer} />)}
                 </div>

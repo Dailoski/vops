@@ -29,12 +29,12 @@ const StyledSingleBeer = styled.div`
   width: 300px;
   padding: 0 25px 70px 25px;
   img{
-    width: 250px;
-    height: 300px;
+    width: 14vw;
+    height: 28vh;
     border: solid 1px #c4c4c4;
   }
   p{
-    width: 90%;
+    width: 100%;
     font-family: Poppins;
     font-size: 16px;
     font-weight: normal;

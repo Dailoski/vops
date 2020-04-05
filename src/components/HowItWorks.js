@@ -36,6 +36,7 @@ margin-top: 80px;
                 }
                 p{
                     width: 90%;
+                    margin: auto;
                 }
             }
             span:nth-child(2){
@@ -56,7 +57,7 @@ export const HowItWorks = () => (
                     <path fill="#2F2F4F" d="M73.75 57.966c-1.67-3.925-4-7.038-6.747-9.01l-2.08 2.942c2.208 1.586 4.124 4.178 5.533 7.493l3.294-1.425zM61.573 50.329l.835-3.517a11.815 11.815 0 0 0-5.984.104c-2.556.702-4.79 2.282-6.444 3.578l2.197 2.855c1.399-1.09 3.248-2.41 5.195-2.948a8.337 8.337 0 0 1 4.2-.072zM46.184 53.592c-1.86 1.482-3.863 2.897-5.948 3.212l.528 3.573c2.914-.439 5.399-2.158 7.643-3.955l-2.223-2.83zM35.061 59.974l.794-3.526c-4.293-.982-7.71-3.357-7.745-3.383l-2.055 2.964c.16.119 4.006 2.804 9.006 3.945z" />
                 </svg>
                 <h3>Unesi svoje podatke</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero justo, volutpat a ligula sed, semper consequat urna. Aliquam lacinia odio a dignissim iaculis.</p>
+                <p>Unesi podatke koji su nam potrebni kako bismo došli do tebe!</p>
             </span>
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="81" height="79" fill="none" viewBox="0 0 81 79">
@@ -65,7 +66,7 @@ export const HowItWorks = () => (
                     <path fill="#2F2F4F" d="M40.5 41.43c-8.394 0-15.22 6.809-15.22 15.182 0 8.374 6.826 15.183 15.22 15.183 8.394 0 15.22-6.81 15.22-15.183 0-8.373-6.826-15.182-15.22-15.182zm0 26.762c-6.403 0-11.608-5.193-11.608-11.58 0-6.387 5.205-11.58 11.608-11.58 6.403 0 11.608 5.194 11.608 11.58 0 6.387-5.205 11.58-11.608 11.58zM20.637 54.554h-8.77v3.602h8.77v-3.602zM68.876 54.554h-8.771v3.602h8.77v-3.602z" />
                 </svg>
                 <h3>Izaberi pivo</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero justo, volutpat a ligula sed, semper consequat urna. Aliquam lacinia odio a dignissim iaculis.</p>
+                <p>Imaš veliki izbor piva kod nas! Preko 30 poznatih brendova i više od 10 vrsta kraft piva.</p>
             </span>
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="90" height="84" fill="none" viewBox="0 0 90 84">
@@ -75,7 +76,7 @@ export const HowItWorks = () => (
                     <path fill="#2F2F4F" d="M36.803 25.218H6.908v3.637h29.895v-3.637z" />
                 </svg>
                 <h3>Udobno se smesti</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero justo, volutpat a ligula sed, semper consequat urna. Aliquam lacinia odio a dignissim iaculis.</p>
+                <p>Stižemo što pre sa tvojom gajbom!</p>
             </span>
         </div>
     </StyledDiv>

@@ -4,7 +4,7 @@
 .App {
   text-align: center;
 }
-div, p, span, button, input{
+div, p, span, button, input, h1{
   font-family: Poppins, sans-serif;
 
 }
