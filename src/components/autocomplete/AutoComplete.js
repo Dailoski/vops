@@ -119,6 +119,7 @@ function enclosingFn({ limit,
         };
 
         handleSelect = (item, downshift) => {
+            console.log(item, downshift)
             this.setState(
                 ({ inputValue }) => ({ inputValue: '' }),
                 () => {

@@ -5,6 +5,7 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { Button } from '@material-ui/core';
+import Autocomplete from './autocomplete/AutoComplete';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -37,16 +38,35 @@ const useStyles = makeStyles(theme => ({
 
 export const CustomizedInputBase = () => {
     const classes = useStyles();
-
+    const api = {
+        url: "https://api.donesi.rs/v2",
+        endpoint: "/location/places",
+        searchTermKeys: ["address"],
+        responseShape: {
+            collectionKey: 'data.addresses',
+            getTextToShow: obj => (obj.street + ", " + obj.region.city)  //what is displayed in autocomplete
+        }
+    }
     return (
         <Paper component="form" className={classes.root}>
             <IconButton disabled type="submit" className={classes.iconButton} aria-label="search">
                 <SearchIcon />
             </IconButton>
-            <InputBase
+            {/* <InputBase
                 className={classes.input}
                 placeholder="Unesite Vašu adresu"
                 inputProps={{ 'aria-label': 'search address' }}
+            /> */}
+            <Autocomplete
+             limit={10}
+             api={api}
+             placeholder="ADRESA"
+             selectedItems={[]}
+             add={()=>{}}
+             addToShop={()=>{}}
+             remove={()=>{}}
+             removeFromShop={()=>{}}
+             wherePart={""}
             />
             <Button color="primary" className={classes.button} aria-label="directions">
                 Poruči sada
