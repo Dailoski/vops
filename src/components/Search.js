@@ -5,7 +5,9 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { Button } from '@material-ui/core';
-import Autocomplete from './autocomplete/AutoComplete';
+import { Autocomplete1 } from './Autocomplete';
+
+// import Autocomplete from './autocomplete/AutoComplete';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -30,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     button: {
         textTransform: "initial",
         backgroundColor: "#ffbc21",
-        color: "black",        
+        color: "black",
         borderRadius: 0,
         width: 190
     }
@@ -57,17 +59,18 @@ export const CustomizedInputBase = () => {
                 placeholder="Unesite Vašu adresu"
                 inputProps={{ 'aria-label': 'search address' }}
             /> */}
-            <Autocomplete
-             limit={10}
-             api={api}
-             placeholder="ADRESA"
-             selectedItems={[]}
-             add={()=>{}}
-             addToShop={()=>{}}
-             remove={()=>{}}
-             removeFromShop={()=>{}}
-             wherePart={""}
-            />
+            {/* <Autocomplete
+                limit={10}
+                api={api}
+                placeholder="ADRESA"
+                selectedItems={[]}
+                add={() => { }}
+                addToShop={() => { }}
+                remove={() => { }}
+                removeFromShop={() => { }}
+                wherePart={""}
+            /> */}
+            <Autocomplete1 />
             <Button color="primary" className={classes.button} aria-label="directions">
                 Poruči sada
             </Button>
