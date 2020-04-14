@@ -4,6 +4,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import propPath from 'crocks/Maybe/propPath'
 
 function sleep(delay = 0) {
     return new Promise((resolve) => {
@@ -11,6 +12,8 @@ function sleep(delay = 0) {
     });
 }
 const api = "https://api.donesi.rs/v2/location/places/?address=";
+
+const getAddresses = propPath(["data", "addresses"])
 
 export const Autocomplete1 = () => {
     const [open, setOpen] = React.useState(false);
@@ -31,7 +34,7 @@ export const Autocomplete1 = () => {
             const response = await fetchAdress.json()
 
             if (active) {
-                setOptions(response.data.addresses.map(adress => ({
+                setOptions(getAddresses(response).option([]).map(adress => ({
                     name: adress.street
                 })
                 ))
