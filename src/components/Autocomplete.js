@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import propPath from 'crocks/Maybe/propPath'
+import { connect } from 'react-redux';
+import { selectedAddress } from '../redux/actions'
 
 function sleep(delay = 0) {
     return new Promise((resolve) => {
@@ -15,7 +17,8 @@ const api = "https://api.donesi.rs/v2/location/places/?address=";
 
 const getAddresses = propPath(["data", "addresses"])
 
-export const Autocomplete1 = () => {
+export const Autocomplete1 = ({ selectedAddress, addressValue }) => {
+    console.log(selectedAddress, addressValue);
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loading = open && options.length === 0;
@@ -52,13 +55,15 @@ export const Autocomplete1 = () => {
         }
     }, [open]);
 
-    const onChange = (searchTerm) => {
-        setString(searchTerm.target.value)
+    const onChange = (searchTerm, value) => {
+        setString(value)
+
     }
 
 
     return (
         <Autocomplete
+            onInputChange={onChange}
             id="asynchronous-demo"
             style={{ width: 300 }}
             open={open}
@@ -77,7 +82,6 @@ export const Autocomplete1 = () => {
                     {...params}
                     label="Asynchronous"
                     variant="outlined"
-                    onChange={onChange}
                     InputProps={{
                         ...params.InputProps,
                         endAdornment: (
@@ -92,3 +96,11 @@ export const Autocomplete1 = () => {
         />
     );
 }
+
+const mapStateToProps = state => ({
+    addressValue: state.location.selectedAddress
+})
+
+export default connect(mapStateToProps, {
+    selectedAddress
+})(Autocomplete1);

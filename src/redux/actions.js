@@ -5,6 +5,12 @@ export const CHANGE_TIME = "CHANGE_TIME"
 export const CHANGE_ASAP_SWITCH = "CHANGE_ASAP_SWITCH"
 export const CHANGE_INPUT = "CHANGE_INPUT"
 export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE"
+export const SELECTED_ADDRESS = "SELECTED_ADDRESS";
+
+export const selectedAddress = payload => ({
+    type: SELECTED_ADDRESS,
+    payload
+})
 
 export const changeLanguage = checked => ({
     type: CHANGE_LANGUAGE,

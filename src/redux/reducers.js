@@ -1,5 +1,15 @@
 import { combineReducers } from 'redux'
-import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_NEW_ITEM_NOTIFICATION, CHANGE_TIME, CHANGE_ASAP_SWITCH, CHANGE_INPUT, CHANGE_LANGUAGE } from './actions';
+import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_NEW_ITEM_NOTIFICATION, CHANGE_TIME, CHANGE_ASAP_SWITCH, CHANGE_INPUT, CHANGE_LANGUAGE, SELECTED_ADDRESS } from './actions';
+
+
+const selectedAddressReducer = (state = '', action) => {
+    switch (action.type) {
+        case SELECTED_ADDRESS:
+            return action.payload
+        default:
+            return state;
+    }
+}
 
 const inputReducer = (state = '', action) => {
     switch (action.type) {
@@ -12,13 +22,13 @@ const inputReducer = (state = '', action) => {
 
 const higherOrderInputReducer = (reducerFunction, reducerName) => {
     return (state, action) => {
-      const { name } = action
-      const isInitializationCall = state === undefined
-      if (name !== reducerName && !isInitializationCall) return state
-  
-      return reducerFunction(state, action)
+        const { name } = action
+        const isInitializationCall = state === undefined
+        if (name !== reducerName && !isInitializationCall) return state
+
+        return reducerFunction(state, action)
     }
-  }
+}
 
 const items = (state = [], action) => state
 
@@ -54,7 +64,7 @@ const selectedItems = (state = {}, action) => {
     const newState = JSON.parse(JSON.stringify(state))
     switch (action.type) {
         case ADD_TO_CART:
-            if(newState[action.id]){
+            if (newState[action.id]) {
                 newState[action.id].quantity += action.quantity
             }
             else newState[action.id] = action.item
@@ -64,13 +74,13 @@ const selectedItems = (state = {}, action) => {
             return newState
         default:
             return state;
-    
+
     }
 }
 
 const info = combineReducers({
-    name: higherOrderInputReducer(inputReducer,"name"),
-    number: higherOrderInputReducer(inputReducer,"number")
+    name: higherOrderInputReducer(inputReducer, "name"),
+    number: higherOrderInputReducer(inputReducer, "number")
 });
 
 const beerList = combineReducers({
@@ -78,8 +88,9 @@ const beerList = combineReducers({
 });
 
 const location = combineReducers({
-    additionalInfo: higherOrderInputReducer(inputReducer,"info"),
-    enteredLocation: higherOrderInputReducer(inputReducer,"location")
+    additionalInfo: higherOrderInputReducer(inputReducer, "info"),
+    enteredLocation: higherOrderInputReducer(inputReducer, "location"),
+    selectedAddress: selectedAddressReducer
 });
 
 const time = combineReducers({
