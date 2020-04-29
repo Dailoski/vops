@@ -6,20 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import propPath from 'crocks/Maybe/propPath'
 import axios from 'axios';
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
+
 const api = "https://api.donesi.rs/v2/location/places/?address=";
 
 const getAddresses = propPath(["data","data", "addresses"])
@@ -43,7 +30,7 @@ export const AutocompleteOLD = () => {
             return undefined;
         }
 
-        debounce(async () => {
+        (async () => {
             const fetchAdress = await fetch.get(string);
             if (active) {
                 setOptions(getAddresses(fetchAdress).option([]).map(adress => ({
@@ -51,7 +38,7 @@ export const AutocompleteOLD = () => {
                 })
                 ))
             }
-        }, 500);
+        })();
 
         return () => {
             active = false;
