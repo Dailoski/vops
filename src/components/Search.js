@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { Button } from '@material-ui/core';
 import { Autocomplete1 } from './Autocomplete';
+import { AutocompleteOLD } from './Autocomplete-OLD';
 
 // import Autocomplete from './autocomplete/AutoComplete';
 
@@ -70,7 +71,7 @@ export const CustomizedInputBase = () => {
                 removeFromShop={() => { }}
                 wherePart={""}
             /> */}
-            <Autocomplete1 />
+            <AutocompleteOLD />
             <Button color="primary" className={classes.button} aria-label="directions">
                 Poruči sada
             </Button>
