@@ -4,6 +4,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
+<<<<<<< HEAD
 import propPath from 'crocks/Maybe/propPath'
 import { connect } from 'react-redux';
 import { selectedAddress } from '../redux/actions'
@@ -23,43 +24,50 @@ export const Autocomplete1 = ({ selectedAddress, addressValue }) => {
     const [options, setOptions] = React.useState([]);
     const loading = open && options.length === 0;
     const [string, setString] = React.useState('');
+=======
 
-    React.useEffect(() => {
-        let active = true;
+export const Autocomplete1 =() => {
+  const [open, setOpen] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
+  const loading = open && options.length === 0;
+  const api = "https://api.donesi.rs/v2/location/places/?address=";
+>>>>>>> 7e0b21fbed7bc872214c07ee5fd164c153267cb3
 
-        if (!loading) {
-            return undefined;
-        }
+  React.useEffect(() => {
+    let active = true;
 
-        (async () => {
-            const fetchAdress = await fetch(api + string);
-            await sleep(500); // For demo purposes.
-            const response = await fetchAdress.json()
+    if (!loading) {
+      return undefined;
+    }
 
-            if (active) {
-                setOptions(getAddresses(response).option([]).map(adress => ({
-                    name: adress.street
-                })
-                ))
-            }
-        })();
+    (async () => {
+      const response = await fetch(api+"resavska");
+      const resp = await response.json();
 
-        return () => {
-            active = false;
-        };
-    }, [loading, string]);
+      if (active) {
+          console.log(resp.data.addresses)
+        setOptions( resp.data.addresses || []);
+      }
+    })();
 
-    React.useEffect(() => {
-        if (!open) {
-            setOptions([]);
-        }
-    }, [open]);
+    return () => {
+      active = false;
+    };
+  }, [loading]);
 
+<<<<<<< HEAD
     const onChange = (searchTerm, value) => {
         setString(value)
 
+=======
+  React.useEffect(() => {
+    if (!open) {
+      setOptions([]);
+>>>>>>> 7e0b21fbed7bc872214c07ee5fd164c153267cb3
     }
+  }, [open]);
 
+<<<<<<< HEAD
 
     return (
         <Autocomplete
@@ -93,8 +101,42 @@ export const Autocomplete1 = ({ selectedAddress, addressValue }) => {
                     }}
                 />
             )}
+=======
+  return (
+    <Autocomplete
+      id="asynchronous-demo"
+      style={{ width: 300 }}
+      open={open}
+      onOpen={() => {
+        setOpen(true);
+      }}
+      onClose={() => {
+        setOpen(false);
+      }}
+      getOptionSelected={(option, value) => option.name === value.name}
+      getOptionLabel={(option) => option.street}
+      options={options}
+      loading={loading}
+      renderInput={(params) => console.log(params.inputProps.value) || (
+        <TextField
+          {...params}
+          onChange={a => console.log(params.inputProps.value + "ONCHANGE" + a.target.value)}
+          label="Asynchronous"
+          variant="outlined"
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <React.Fragment>
+                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                {params.InputProps.endAdornment}
+              </React.Fragment>
+            ),
+          }}
+>>>>>>> 7e0b21fbed7bc872214c07ee5fd164c153267cb3
         />
-    );
+      )}
+    />
+  );
 }
 
 const mapStateToProps = state => ({
