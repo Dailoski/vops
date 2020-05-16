@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { Button } from '@material-ui/core';
 import { Autocomplete1 } from './Autocomplete';
-import { AutocompleteOLD } from './Autocomplete-OLD';
+import AutocompleteOLD from './Autocomplete-OLD';
 
 // import Autocomplete from './autocomplete/AutoComplete';
 

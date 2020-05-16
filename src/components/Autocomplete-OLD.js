@@ -6,18 +6,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import propPath from 'crocks/Maybe/propPath'
 import axios from 'axios';
-
-const debounce = (func, wait) => {
-    let timeout;
-    return function (...args) {
-        const context = this;
-        if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            timeout = null;
-            func.apply(context, args);
-        }, wait);
-    };
-};
+import { connect } from 'react-redux';
+import { selectedAddress } from '../redux/actions'
 
 
 const api = "https://api.donesi.rs/v2/location/places/?address=";
@@ -30,7 +20,7 @@ const fetch = axios.create({
     headers: { 'accept-language': 'sr_latin' }
 });
 
-export const AutocompleteOLD = () => {
+const AutocompleteOLD = ({ selectedAddress }) => {
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loading = open && options.length === 0;
@@ -68,7 +58,13 @@ export const AutocompleteOLD = () => {
         setString(searchTerm.target.value)
     }
 
-    console.log(options)
+    const onSelect = (params) => {
+        const { value } = params.inputProps;
+        selectedAddress(value);
+    }
+
+
+    // console.log(options)
     return (
         <Autocomplete
             id="asynchronous-demo"
@@ -90,6 +86,7 @@ export const AutocompleteOLD = () => {
                     label="Adress"
                     variant="outlined"
                     onChange={onChange}
+                    onSelect={onSelect(params)}
                     InputProps={{
                         ...params.InputProps,
                         endAdornment: (
@@ -100,7 +97,14 @@ export const AutocompleteOLD = () => {
                         ),
                     }}
                 />
-            )}
+            )
+            }
         />
     );
 }
+
+
+
+export default connect(null, {
+    selectedAddress
+})(AutocompleteOLD)
